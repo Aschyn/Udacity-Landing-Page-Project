@@ -1,0 +1,29 @@
+body{
+  margin: 0;
+}
+header{
+  min-height: 15vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "title"
+    "nav";
+  text-align: center;
+  background-color: #246D5E;
+}
+
+#section__nav{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landing__section{
+  min-height: 60vh;
+  width: 80vw;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+}
