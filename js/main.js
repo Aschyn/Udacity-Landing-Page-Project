@@ -23,7 +23,7 @@ function createFragment(section_objects){
     fragment.append(a);
   });
 
-  document.querySelector('.nav').append(fragment);
+  document.querySelector('.nav__list').append(fragment);
 }
 getSections();
 

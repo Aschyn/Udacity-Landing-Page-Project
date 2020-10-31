@@ -1,3 +1,7 @@
+.hidden{
+  display: none;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -20,12 +24,21 @@ header{
     "nav";
   text-align: center;
   background-color: #246D5E;
+  overflow: auto;
 }
-.hidden{
-  display: none;
+.header__title{
+  line-height: 10vh;
+  font-size: 10vw;
+  margin: 0;
+  grid-area: title;
+  overflow: hidden;
 }
 
-.nav{
+.header__nav{
+  grid-area: nav;
+  padding: 1vh 0 1vh 0;
+}
+.nav__list{
   margin-top: 5vh;
   width: 90%;
   padding: 0px;
@@ -39,18 +52,22 @@ header{
   list-style: none;
   height: auto;
   width: auto;
-  font-size: 1.2em;
+  font-size: 3.5vw;
   padding: 10px;
   font-weight: bold;
+
 }
 .nav__link{
+  background-color: #758AA8;
   text-decoration: none;
   color: #051A38;
   flex-basis: 25vw;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 .active{
   text-decoration: underline;
+  background-color: #051A38;
   color: white;
 }
 .landing{
@@ -63,5 +80,14 @@ header{
   margin-right: auto;
   padding-top: 30vh;
   border-bottom: 5px solid #246D5E;
+  font-size: 20px;
+}
 
+@media (min-width:650px) {
+  .header__title{
+    font-size: 2em;
+  }
+  .nav__item{
+    font-size: 1.25em;
+  }
 }
