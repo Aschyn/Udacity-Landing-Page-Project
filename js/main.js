@@ -9,19 +9,24 @@ function getSections(){
   createFragment(sections_data);
 }
 
-//Creates a DOM Fragment and appends it to the nav ul
+//Creates a DOM Fragment of list items and appends it to the nav ul
 function createFragment(section_objects){
   let fragment = document.createDocumentFragment();
   section_objects.forEach((obj, i) => {
-    const a = document.createElement('a');
-    a.setAttribute('class', 'nav__link');
+    const section_ref = document.querySelector('#'+obj.id);
+    const li = document.createElement('li');
     if(i === 0){
-      a.setAttribute('class', 'nav__link active');
+      li.setAttribute('class', 'nav__item active');
+    }else{
+      li.setAttribute('class', 'nav__item');
     }
-    a.setAttribute('href', '#'+obj.id);
-    a.setAttribute('data-section-ref', obj.id);
-    a.innerHTML = `<li class='nav__item'>${obj.name}</li>`;
-    fragment.append(a);
+    li.setAttribute('data-section-ref', obj.id);
+    li.textContent = obj.name;
+    li.addEventListener('click', function(e){
+      e.preventDefault();
+      section_ref.scrollIntoView();
+    });
+    fragment.append(li);
   });
 
   document.querySelector('.nav__list').append(fragment);
@@ -30,12 +35,12 @@ function createFragment(section_objects){
 //Gets the position and if it intersects a section, it highlights the associated nav link
 //Inspiration from https://css-tricks.com/sticky-smooth-active-nav/ (Tweaked for my use case)
 function activeNav(){
-  const section_links = document.querySelectorAll('.nav__link');
+  const section_links = document.querySelectorAll('.nav__item');
   const nav_height = document.querySelector('header').offsetHeight;
   window.addEventListener('scroll', e => {
     let posY = window.scrollY;
     section_links.forEach((link) => {
-      let section = document.querySelector(link.hash);
+      let section = document.getElementById(link.getAttribute('data-section-ref'));
       if((section.offsetTop  <= posY + nav_height) && (section.offsetTop + section.offsetHeight >= posY + nav_height)){
         link.classList.add('active');
       }else{

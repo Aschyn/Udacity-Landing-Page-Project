@@ -98,12 +98,9 @@ body{
 
   font-size: 3vw;
 
-  padding: 10px;
+  padding: 5px;
 
   font-weight: bold;
-
-}
-.nav__link{
 
   background-color: #758AA8;
 
@@ -113,9 +110,14 @@ body{
 
   flex-basis: 25vw;
 
-  margin-bottom: 10px;
+  margin: 0px 2px 10px 0px;
 
   border-radius: 5px;
+
+}
+.nav__link{
+
+
 
 }
 .active{
