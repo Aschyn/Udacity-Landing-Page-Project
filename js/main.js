@@ -1,4 +1,4 @@
-//Gets all sections with the class .landing__section and saves their ID and name
+//Gets all sections with the class .landing__section and creates an object of their IDs and names
 function getSections(){
   const sections = [...document.querySelectorAll('.landing__section')];
   const sections_data = [];
@@ -8,7 +8,8 @@ function getSections(){
   }
   createFragment(sections_data);
 }
-//Creates DOM Fragment and appends it to the nav ul
+
+//Creates a DOM Fragment and appends it to the nav ul
 function createFragment(section_objects){
   let fragment = document.createDocumentFragment();
   section_objects.forEach((obj, i) => {
@@ -25,18 +26,9 @@ function createFragment(section_objects){
 
   document.querySelector('.nav__list').append(fragment);
 }
-getSections();
 
-
-function dropDown(){
-  const items = [...document.querySelectorAll('.nav__link')];
-  for(item of items){
-    if(!item.classList.contains('nav__open')){
-      item.classList.toggle('hidden');
-    }
-  }
-}
-
+//Gets the position and if it intersects a section, it highlights the associated nav link
+//Inspiration from https://css-tricks.com/sticky-smooth-active-nav/ (Tweaked for my use case)
 function activeNav(){
   const section_links = document.querySelectorAll('.nav__link');
   const nav_height = document.querySelector('header').offsetHeight;
@@ -53,6 +45,21 @@ function activeNav(){
   })
 }
 
+//Show/Hide function when a section title is clicked
+function toggleShow(section) {
+  section.nextElementSibling.classList.toggle('hidden');
+  if(section.nextElementSibling.classList.contains('hidden')){
+      section.lastChild.innerHTML = "&#9660;";
+  }else{
+    section.lastChild.innerHTML = "&#9650";
+  }
+
+  section.parentElement.classList.toggle('shrink');
+}
+
+getSections();
+
+//When the DOM is loaded, begin checking for scroll position
 document.addEventListener('DOMContentLoaded', ()=>{
   activeNav();
-})
+});
